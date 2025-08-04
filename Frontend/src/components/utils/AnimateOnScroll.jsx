@@ -2,8 +2,8 @@ import { useInView } from 'react-intersection-observer';
 
 const AnimateOnScroll = ({ children, direction = 'up' }) => {
   const { ref, inView } = useInView({
-    triggerOnce: true, // Animasi hanya berjalan sekali
-    threshold: 0.1,    // Muncul saat 10% elemen terlihat
+    triggerOnce: true,
+    threshold: 0.1,
   });
 
   const getDirectionClasses = () => {

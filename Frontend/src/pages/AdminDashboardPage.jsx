@@ -1,11 +1,9 @@
-// src/pages/admin/AdminDashboardPage.jsx
-
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import AdminHeader from '../components/admin/AdminHeader';
 import { useData } from '../context/DataContext';
 
-// Enhanced StatCard with glassmorphism and micro-interactions
 const StatCard = ({ title, value, change, icon, color, index }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -140,7 +138,6 @@ const StatCard = ({ title, value, change, icon, color, index }) => {
   );
 };
 
-// Enhanced RecentActivityItem with better animations
 const RecentActivityItem = ({ user, action, time, icon, color, index }) => {
   const colorClasses = {
     emerald: 'bg-gradient-to-r from-emerald-400 to-emerald-500 text-white shadow-emerald-200',
@@ -196,7 +193,6 @@ const RecentActivityItem = ({ user, action, time, icon, color, index }) => {
   );
 };
 
-// Enhanced QuickActionItem with modern glassmorphism
 const QuickActionItem = ({ title, description, icon, color, onClick, index }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -289,11 +285,11 @@ const QuickActionItem = ({ title, description, icon, color, onClick, index }) =>
   );
 };
 
-// Main Dashboard Component
 const AdminDashboardPage = () => {
   const [adminUser, setAdminUser] = useState(null);
   const [mounted, setMounted] = useState(false);
-  const { users } = useData();
+  const { users, activities } = useData(); // Added activities
+  const navigate = useNavigate()
 
   useEffect(() => {
     const user = localStorage.getItem('adminUser');
@@ -301,21 +297,48 @@ const AdminDashboardPage = () => {
     setMounted(true);
   }, []);
 
+  // Calculate statistics
   const totalBalance = users.reduce((sum, user) => sum + user.balance, 0);
+  const activeUsers = users.filter(u => u.status === 'active').length;
+  const totalWasteCollected = users.reduce((sum, user) => sum + user.totalWaste, 0);
 
-  const activities = [
-    { user: 'Maria Garcia', action: 'New user registered', time: '2 hours ago', icon: 'fa-user-plus', color: 'emerald' },
-    { user: 'John Smith', action: 'Balance deducted: Rp 45.500', time: '4 hours ago', icon: 'fa-arrow-down', color: 'red' },
-    { user: 'Sarah Johnson', action: 'Pickup scheduled', time: '6 hours ago', icon: 'fa-truck', color: 'blue' },
-    { user: 'Michael Brown', action: 'Account verified', time: '8 hours ago', icon: 'fa-check-circle', color: 'emerald' },
-    { user: 'Emma Wilson', action: 'Deposit completed: Rp 75.000', time: '10 hours ago', icon: 'fa-arrow-up', color: 'blue' },
-  ];
+  // Calculate growth percentages (mock data for demo)
+  const growthStats = {
+    users: '+12%',
+    activeUsers: '+8%',
+    balance: '+15%',
+    waste: '+23%'
+  };
 
   const quickActions = [
-    { title: 'Add New User', description: 'Register a new user account', icon: 'fa-user-plus', color: 'emerald' },
-    { title: 'View All Users', description: 'Manage existing users', icon: 'fa-users', color: 'blue' },
-    { title: 'Process Pickup', description: 'Handle waste pickup requests', icon: 'fa-truck', color: 'purple' },
-    { title: 'Generate Report', description: 'Create activity reports', icon: 'fa-file-alt', color: 'yellow' },
+    {
+      title: 'Add New User',
+      description: 'Register a new user account',
+      icon: 'fa-user-plus',
+      color: 'emerald',
+      onClick: () => navigate('/admin/users/add')
+    },
+    {
+      title: 'View All Users',
+      description: 'Manage existing users',
+      icon: 'fa-users',
+      color: 'blue',
+      onClick: () => navigate('/admin/users')
+    },
+    {
+      title: 'Process Pickup',
+      description: 'Handle waste pickup requests',
+      icon: 'fa-truck',
+      color: 'purple',
+      onClick: () => navigate('/admin/pickups')
+    },
+    {
+      title: 'Generate Report',
+      description: 'Create activity reports',
+      icon: 'fa-file-alt',
+      color: 'yellow',
+      onClick: () => navigate('/admin/reports')
+    },
   ];
 
   if (!adminUser || !mounted) {
@@ -339,20 +362,19 @@ const AdminDashboardPage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-slate-50 to-slate-100">
-      {/* Animated background elements */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         {[...Array(5)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-64 h-64 rounded-full bg-gradient-to-r from-emerald-400/5 to-blue-400/5"
             initial={{
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
+              x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
+              y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
               scale: 0
             }}
             animate={{
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
+              x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
+              y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
               scale: [0, 1, 0],
               rotate: 360
             }}
@@ -369,7 +391,6 @@ const AdminDashboardPage = () => {
       <AdminHeader />
 
       <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Welcome Section */}
         <motion.div
           className="mb-10"
           initial={{ opacity: 0, y: 30 }}
@@ -394,7 +415,6 @@ const AdminDashboardPage = () => {
           </motion.p>
         </motion.div>
 
-        {/* Stats Grid */}
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10"
           initial={{ opacity: 0 }}
@@ -404,15 +424,15 @@ const AdminDashboardPage = () => {
           <StatCard
             title="Total Users"
             value={users.length}
-            change="+12%"
+            change={growthStats.users}
             icon="fa-users"
             color="emerald"
             index={0}
           />
           <StatCard
             title="Active Accounts"
-            value={users.filter(u => u.status === 'active').length}
-            change="+8%"
+            value={activeUsers}
+            change={growthStats.activeUsers}
             icon="fa-user-check"
             color="blue"
             index={1}
@@ -420,24 +440,22 @@ const AdminDashboardPage = () => {
           <StatCard
             title="Total Balance"
             value={`Rp ${totalBalance.toLocaleString('id-ID')}`}
-            change="+15%"
+            change={growthStats.balance}
             icon="fa-wallet"
             color="yellow"
             index={2}
           />
           <StatCard
-            title="Monthly Pickups"
-            value="156"
-            change="+23%"
-            icon="fa-truck"
+            title="Total Waste"
+            value={`${totalWasteCollected} kg`}
+            change={growthStats.waste}
+            icon="fa-leaf"
             color="purple"
             index={3}
           />
         </motion.div>
 
-        {/* Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Recent Activities */}
           <motion.div
             className="lg:col-span-2 bg-white/80 backdrop-blur-xl rounded-2xl shadow-lg shadow-slate-200/50 border border-white/20 overflow-hidden"
             initial={{ opacity: 0, x: -30 }}
@@ -457,14 +475,31 @@ const AdminDashboardPage = () => {
             </div>
             <div className="divide-y divide-slate-100 max-h-96 overflow-y-auto">
               <AnimatePresence>
-                {activities.map((activity, index) => (
-                  <RecentActivityItem key={index} {...activity} index={index} />
-                ))}
+                {activities.length > 0 ? (
+                  activities.slice(0, 5).map((activity, index) => (
+                    <RecentActivityItem
+                      key={activity.id}
+                      user={activity.admin}
+                      action={activity.action}
+                      time={new Date(activity.timestamp).toLocaleString('id-ID', {
+                        dateStyle: 'medium',
+                        timeStyle: 'short',
+                      })}
+                      icon={activity.icon}
+                      color={activity.color}
+                      index={index}
+                    />
+                  ))
+                ) : (
+                  <div className="p-8 text-center text-slate-500">
+                    <i className="fas fa-inbox text-4xl mb-4 opacity-50"></i>
+                    <p>No recent activities to show</p>
+                  </div>
+                )}
               </AnimatePresence>
             </div>
           </motion.div>
-
-          {/* Quick Actions */}
+          
           <motion.div
             className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-lg shadow-slate-200/50 border border-white/20 p-6 space-y-5"
             initial={{ opacity: 0, x: 30 }}
@@ -488,7 +523,6 @@ const AdminDashboardPage = () => {
                   key={index}
                   {...action}
                   index={index}
-                  onClick={() => console.log(`${action.title} clicked`)}
                 />
               ))}
             </div>

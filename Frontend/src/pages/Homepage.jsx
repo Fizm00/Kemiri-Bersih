@@ -131,7 +131,7 @@ const HomePage = () => {
 
           <div className="container mx-auto px-6 text-center relative z-10">
             <AnimateOnScroll>
-              <div className="mb-8">
+            <div className="text-center mb-16">
                 <span className="bg-gradient-to-r from-emerald-100 to-teal-100 text-emerald-700 px-6 py-2 rounded-full font-semibold text-sm border border-emerald-200/50">
                   PROSES MUDAH
                 </span>
@@ -181,7 +181,7 @@ const HomePage = () => {
           </div>
         </section>
 
-        <section className="py-16 sm:py-20 relative">
+        <section className="py-10 sm:py-16 relative mb-16 sm:mb-20">
           <div className="absolute inset-0 bg-gradient-to-r from-emerald-50/40 via-white/60 to-teal-50/40"></div>
           <div className="absolute inset-0 opacity-5">
             <div className="absolute top-1/4 left-10 w-40 h-40 bg-emerald-300 rounded-full filter blur-2xl animate-pulse"></div>

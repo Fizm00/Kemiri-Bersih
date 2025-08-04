@@ -11,7 +11,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/leaderboard" element={<UserDashboardPage />} /> {/* <-- TAMBAHKAN RUTE INI */}
+      <Route path="/leaderboard" element={<UserDashboardPage />} />
       <Route path="/admin/login" element={<AdminLoginPage />} />
       <Route path="/admin" element={<AdminDashboardPage />} />
       <Route
