@@ -63,7 +63,7 @@ const Footer = () => {
                 {[
                   { to: "/", label: "Beranda", icon: "fas fa-home" },
                   { to: "/leaderboard", label: "Papan Peringkat", icon: "fas fa-trophy" },
-                  { to: "/about", label: "Tentang Proyek", icon: "fas fa-info-circle" },
+                  { to: "/about", label: "Tentang Proker", icon: "fas fa-info-circle" },
                   { to: "#", label: "Galeri Kegiatan", icon: "fas fa-images" }
                 ].map((item, index) => (
                   <li key={index}>
