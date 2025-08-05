@@ -8,105 +8,117 @@ import Background2 from '../assets/Background2.jpg';
 import Background3 from '../assets/Background3.jpg';
 import Background4 from '../assets/Background4.jpg';
 import Background5 from '../assets/Background5.jpg';
+import Profile1 from '../assets/ProfilePict/Profile1.jpg';
+import Profile2 from '../assets/ProfilePict/Profile2.jpg';
+import Profile3 from '../assets/ProfilePict/Profile3.jpg';
+import Profile4 from '../assets/ProfilePict/Profile4.jpg';
+import Profile5 from '../assets/ProfilePict/Profile5.jpg';
+import Profile6 from '../assets/ProfilePict/Profile6.jpg';
+import Profile7 from '../assets/ProfilePict/Profile7.jpg';
+import Profile8 from '../assets/ProfilePict/Profile8.jpg';
+import Profile9 from '../assets/ProfilePict/Profile9.jpg';
+import Profile10 from '../assets/ProfilePict/Profile10.jpg';
+
+
 
 // 1. UPDATE teamMembers array - tambahkan hierarchy dan priority
 const teamMembers = [
     {
-        name: 'Andi Pratama',
-        role: 'Koordinator Tim',
-        image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
+        name: 'Mochammad Faris',
+        role: 'Ketua Tim',
+        image: Profile1,
         bio: 'Memimpin inisiatif kebersihan lingkungan dan koordinasi program.',
-        skills: ['Leadership', 'Project Management', 'Environmental Planning'],
+        majors: 'Civil Engineering',
         university: 'Universitas Negeri Yogyakarta',
         hierarchy: 'leader', // TAMBAHKAN hierarchy
         priority: 1 // TAMBAHKAN priority untuk sorting
     },
     {
-        name: 'Sari Dewi',
-        role: 'Spesialis Edukasi',
-        image: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face',
-        bio: 'Fokus pada program edukasi lingkungan untuk masyarakat.',
-        skills: ['Education', 'Community Outreach', 'Public Speaking'],
+        name: 'Hana Wijayanti',
+        role: 'Bendahara',
+        image: Profile2,
+        bio: 'Mengelola keuangan dan sumber daya untuk program kebersihan.',
+        majors: 'Management',
         university: 'Universitas Negeri Yogyakarta',
         hierarchy: 'core', // TAMBAHKAN hierarchy
         priority: 2
     },
     {
-        name: 'Budi Santoso',
-        role: 'Manager Bank Sampah',
-        image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face',
-        bio: 'Mengelola sistem bank sampah digital dan ekonomi sirkular.',
-        skills: ['Digital Systems', 'Waste Management', 'Economics'],
+        name: 'Marha Karamina',
+        role: 'Sekretaris',
+        image: Profile3,
+        bio: 'Mengatur administrasi dan dokumentasi kegiatan.',
+        majors: 'Statistics',
         university: 'Universitas Negeri Yogyakarta',
         hierarchy: 'core',
         priority: 3
     },
     {
-        name: 'Maya Anggraini',
-        role: 'Koordinator Daur Ulang',
-        image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face',
-        bio: 'Mengembangkan program daur ulang dan kreativitas sampah.',
-        skills: ['Recycling', 'Creative Design', 'Workshop Management'],
+        name: 'Yusnan Arya',
+        role: 'Sponsorship',
+        image: Profile4,
+        bio: 'Membangun kemitraan dengan sponsor untuk mendukung program.',
+        majors: 'Civil Engineering',
         university: 'Universitas Negeri Yogyakarta',
         hierarchy: 'core',
         priority: 4
     },
     {
-        name: 'Rizki Fajar',
-        role: 'Teknologi & Inovasi',
-        image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face',
-        bio: 'Mengembangkan solusi teknologi untuk pengelolaan sampah.',
-        skills: ['Web Development', 'IoT Systems', 'Data Analysis'],
+        name: 'Firza Himawan',
+        role: 'Logistik',
+        image: Profile5,
+        bio: 'Mengelola logistik dan distribusi sumber daya untuk kegiatan lapangan.',
+        majors: 'Information Technology',
         university: 'Universitas Negeri Yogyakarta',
         hierarchy: 'specialist',
         priority: 5
     },
     {
-        name: 'Indira Sari',
-        role: 'Hubungan Masyarakat',
-        image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face',
-        bio: 'Menjalin komunikasi dan kerjasama dengan komunitas lokal.',
-        skills: ['Public Relations', 'Communication', 'Event Planning'],
+        name: 'Gregorius Beryl',
+        role: 'Logistik',
+        image: Profile6,
+        bio: 'Mengelola logistik dan distribusi sumber daya untuk kegiatan lapangan.',
+        majors: 'Civil Engineering',
         university: 'Universitas Negeri Yogyakarta',
         hierarchy: 'specialist',
         priority: 6
     },
     {
-        name: 'Dimas Prasetyo',
-        role: 'Dokumentasi & Media',
-        image: 'https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=150&h=150&fit=crop&crop=face',
-        bio: 'Mendokumentasikan kegiatan dan mengelola media sosial.',
-        skills: ['Photography', 'Video Editing', 'Social Media'],
+        name: 'Muhammad Rafi',
+        role: 'Humas',
+        image: Profile7,
+        bio: 'Bertanggung jawab atas komunikasi dan hubungan masyarakat.',
+        majors: 'Civil Engineering',
         university: 'Universitas Negeri Yogyakarta',
         hierarchy: 'specialist',
         priority: 7
     },
     {
-        name: 'Lestari Wulan',
-        role: 'Kesehatan Lingkungan',
-        image: 'https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=150&h=150&fit=crop&crop=face',
+        name: 'Farahhuda Atikah',
+        role: 'Humas',
+        image: Profile8,
         bio: 'Fokus pada aspek kesehatan dari program kebersihan lingkungan.',
-        skills: ['Health Assessment', 'Environmental Science', 'Research'],
+        majors: 'Statistics',
         university: 'Universitas Negeri Yogyakarta',
         hierarchy: 'support',
         priority: 8
     },
     {
-        name: 'Agung Wijaya',
-        role: 'Logistik & Operasional',
-        image: 'https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=150&h=150&fit=crop&crop=face',
-        bio: 'Mengelola logistik dan operasional kegiatan lapangan.',
-        skills: ['Operations', 'Supply Chain', 'Field Coordination'],
+        name: 'Anaaaaa',
+        role: 'PDD',
+        image: Profile9,
+        bio: 'Mendokumentasikan kegiatan dan mengelola media sosial.',
+        majors: 'Manajemen',
         university: 'Universitas Negeri Yogyakarta',
         hierarchy: 'support',
         priority: 9
     },
     {
-        name: 'Putri Maharani',
-        role: 'Analisis & Evaluasi',
-        image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=150&h=150&fit=crop&crop=face',
-        bio: 'Melakukan analisis dampak dan evaluasi program berkelanjutan.',
-        skills: ['Data Analysis', 'Impact Assessment', 'Report Writing'],
+        name: 'Wahyu Nur Cahyanto',
+        role: 'PDD',
+        image: Profile10,
+        bio: 'Mendokumentasikan kegiatan dan mengelola media sosial.',
+        majors: 'Information Technology',
         university: 'Universitas Negeri Yogyakarta',
         hierarchy: 'support',
         priority: 10
@@ -248,16 +260,18 @@ const AboutPage = () => {
     }, []);
 
     const containerVariants = {
-        hidden: { opacity: 0 },
+        hidden: { opacity: 0, y: 60, scale: 0.9 },
         visible: {
             opacity: 1,
+            y: 0,
+            scale: 1,
             transition: {
-                staggerChildren: 0.1,
-                delayChildren: 0.2,
+                type: 'spring',
+                stiffness: 80,
+                damping: 20,
             },
         },
     };
-
     const itemVariants = {
         hidden: { opacity: 0, y: 60, scale: 0.9 },
         visible: {
@@ -456,7 +470,7 @@ const AboutPage = () => {
                             className="text-lg sm:text-xl md:text-2xl text-slate-200 max-w-3xl mx-auto leading-relaxed mb-6 sm:mb-8 bg-slate-800/70 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-2xl border border-slate-700/50"
                             variants={itemVariants}
                         >
-                            Bank sampah Dusun Kemiri yang hadir sebagai solusi pengelolaan sampah berbasis masyarakat dengan mengusung semangat transformasi lingkungan yang berkelanjutan melalui inovasi, pemanfaatan teknologi, dan pemberdayaan warga untuk menciptakan lingkungan yang lebih sehat dan produktif.
+                            <span className="text-emerald-400 font-semibold"> Bank Sampah </span> Dusun Kemiri hadir sebagai solusi lingkungan berkelanjutan melalui inovasi, teknologi, dan pemberdayaan masyarakat dalam pengelolaan sampah.
                         </motion.p>
 
                         <motion.div
@@ -482,7 +496,7 @@ const AboutPage = () => {
                 </section>
 
                 {/* Waste Bank Program Section */}
-                <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-16 sm:py-20 relative overflow-hidden">
+                <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
                     {/* Floating Background Elements */}
                     <div className="absolute inset-0 overflow-hidden pointer-events-none">
                         <motion.div
@@ -515,30 +529,12 @@ const AboutPage = () => {
                     </div>
 
                     <motion.div
-                        className="max-w-7xl mx-auto relative z-10"
+                        className="max-w-6xl mx-auto relative z-10"
                         variants={containerVariants}
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: false, amount: 0.3 }}
                     >
-                        {/* Modern Header */}
-                        <motion.div
-                            className="text-center mb-16 sm:mb-20"
-                            variants={itemVariants}
-                        >
-                            <motion.h2
-                                className="text-5xl sm:text-6xl md:text-7xl font-black mb-8"
-                                variants={itemVariants}
-                            >
-                                <span className="bg-gradient-to-r from-emerald-300 via-cyan-300 to-blue-300 bg-clip-text text-transparent drop-shadow-2xl">
-                                    Bank Sampah
-                                </span>
-                                <br />
-                                <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-rose-400 bg-clip-text text-transparent">
-                                    Digital
-                                </span>
-                            </motion.h2>
-                        </motion.div>
 
                         {/* Hero Feature Card */}
                         <motion.div
@@ -556,8 +552,6 @@ const AboutPage = () => {
                                         <div className="w-32 h-32 bg-gradient-to-br from-emerald-400 via-cyan-400 to-blue-500 rounded-3xl flex items-center justify-center shadow-2xl">
                                             <motion.span
                                                 className="text-5xl"
-                                                animate={{ rotate: [0, 10, -10, 0] }}
-                                                transition={{ duration: 4, repeat: Infinity }}
                                             >
                                                 🏦
                                             </motion.span>
@@ -569,7 +563,7 @@ const AboutPage = () => {
                                         </h3>
                                         <p className="text-slate-300 text-lg sm:text-xl leading-relaxed max-w-2xl">
                                             Bank sampah yang didesain tanpa memerlukan bangunan fisik untuk
-                                            <span className="text-emerald-400 font-semibold"> meminimalisir penggunaan lahan</span>
+                                            <span className="text-emerald-400 font-semibold"> meminimalisir penggunaan lahan </span>
                                             sekaligus mengoptimalkan pengelolaan sampah masyarakat.
                                         </p>
                                     </div>
@@ -666,7 +660,7 @@ const AboutPage = () => {
                         viewport={{ once: false, amount: 0.3 }}
                     >
                         <motion.h2
-                            className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-12 sm:mb-16 bg-slate-800/90 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 mx-auto max-w-fit shadow-2xl border border-slate-700/50"
+                            className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-12 sm:mb-16 bg-slate-800/80 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 mx-auto max-w-fit shadow-lg border border-white/10"
                             variants={itemVariants}
                         >
                             <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
@@ -678,14 +672,14 @@ const AboutPage = () => {
                             {features.map((feature, index) => (
                                 <motion.div
                                     key={index}
-                                    className="bg-slate-800/95 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 border border-slate-700/50 hover:border-slate-600/70"
+                                    className="bg-slate-800/80 backdrop-blur-md rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-white/10 hover:border-white/20"
                                     variants={cardVariants}
                                     whileHover="hover"
                                 >
                                     <motion.div
                                         className="text-4xl sm:text-5xl mb-4 sm:mb-6 text-center"
-                                        whileHover={{ scale: 1.2, rotate: 10 }}
-                                        transition={{ duration: 0.3 }}
+                                        whileHover={{ scale: 1.1, y: -5 }}
+                                        transition={{ type: "spring", stiffness: 400, damping: 10 }}
                                     >
                                         {feature.icon}
                                     </motion.div>
@@ -702,8 +696,6 @@ const AboutPage = () => {
                         </div>
                     </motion.div>
                 </section>
-
-
 
                 {/* Team Section */}
                 <section className="min-h-screen flex items-center justify-center px-4 py-32">
@@ -969,15 +961,15 @@ const AboutPage = () => {
                                 <div className="mb-6">
                                     <h4 className="text-sm font-semibold text-white mb-3">Keahlian:</h4>
                                     <div className="flex flex-wrap gap-2 justify-center">
-                                        {selectedMember.skills.map((skill, skillIndex) => (
+                                        {(Array.isArray(selectedMember.majors) ? selectedMember.majors : [selectedMember.majors]).map((major, majorIndex) => (
                                             <motion.span
-                                                key={skillIndex}
+                                                key={majorIndex}
                                                 className="px-2 sm:px-3 py-1 bg-gradient-to-r from-orange-900/70 to-amber-900/70 text-orange-300 text-xs font-medium rounded-full border border-orange-500/30"
                                                 initial={{ scale: 0, opacity: 0 }}
                                                 animate={{ scale: 1, opacity: 1 }}
-                                                transition={{ delay: 0.3 + skillIndex * 0.1, type: 'spring', stiffness: 200 }}
+                                                transition={{ delay: 0.3 + majorIndex * 0.1, type: 'spring', stiffness: 200 }}
                                             >
-                                                {skill}
+                                                {major}
                                             </motion.span>
                                         ))}
                                     </div>
