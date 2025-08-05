@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
+import {useData} from '../../context/DataContext';
 
 const Footer = () => {
+  const { users } = useData();
+
   return (
     <footer className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden">
       <div className="absolute inset-0 opacity-5">
@@ -41,11 +44,11 @@ const Footer = () => {
 
               <div className="grid grid-cols-2 gap-4 pt-4 border-t border-slate-700">
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-emerald-400">500+</div>
+                  <div className="text-2xl font-bold text-emerald-400">{users.length}+</div>
                   <div className="text-xs text-slate-400 uppercase tracking-wide">Partisipan</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-teal-400">15+</div>
+                  <div className="text-2xl font-bold text-teal-400">4+</div>
                   <div className="text-xs text-slate-400 uppercase tracking-wide">Program</div>
                 </div>
               </div>
@@ -60,7 +63,7 @@ const Footer = () => {
                 {[
                   { to: "/", label: "Beranda", icon: "fas fa-home" },
                   { to: "/leaderboard", label: "Papan Peringkat", icon: "fas fa-trophy" },
-                  { to: "#", label: "Tentang Proyek", icon: "fas fa-info-circle" },
+                  { to: "/about", label: "Tentang Proyek", icon: "fas fa-info-circle" },
                   { to: "#", label: "Galeri Kegiatan", icon: "fas fa-images" }
                 ].map((item, index) => (
                   <li key={index}>

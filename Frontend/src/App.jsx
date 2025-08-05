@@ -6,12 +6,14 @@ import AdminLoginPage from './pages/AdminLoginPage';
 import ProtectedRoute from './components/layouts/ProtectedRoute';
 import UsersListPage from './pages/UsersListPage';
 import AddUserPage from './pages/AddUserPage';
+import AboutPage from './pages/AboutPage';
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/leaderboard" element={<UserDashboardPage />} />
+      <Route path="/about" element={<AboutPage />} />
       <Route path="/admin/login" element={<AdminLoginPage />} />
       <Route path="/admin" element={<AdminDashboardPage />} />
       <Route
