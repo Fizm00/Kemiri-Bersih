@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useData } from '../context/DataContext';
 import AdminHeader from '../components/admin/AdminHeader';
+import EditUserModal from '../components/admin/EditUserModal';
 import DeleteUserModal from '../components/admin/DeleteUserModal';
 
 const UsersListPage = () => {
@@ -17,6 +18,8 @@ const UsersListPage = () => {
     const [hoveredCard, setHoveredCard] = useState(null);
     const [selectedUsers, setSelectedUsers] = useState(new Set());
     const [showStats, setShowStats] = useState(true);
+    const [showEditModal, setShowEditModal] = useState(false);
+    const [userToEdit, setUserToEdit] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -55,6 +58,21 @@ const UsersListPage = () => {
             direction = 'desc';
         }
         setSortConfig({ key, direction });
+    };
+
+
+    const handleEditClick = (user) => {
+        setUserToEdit(user);
+        setShowEditModal(true);
+    };
+
+    const handleEditConfirm = (updatedUser) => {
+        const updatedUsers = users.map((u) =>
+            u.id === updatedUser.id ? updatedUser : u
+        );
+        updateUsers(updatedUsers);
+        setShowEditModal(false);
+        setUserToEdit(null);
     };
 
     const handleDeleteClick = (user) => {
@@ -504,14 +522,15 @@ const UsersListPage = () => {
                                                             <td className="px-6 py-4">
                                                                 <div className="flex items-center gap-3">
                                                                     <motion.div
-                                                                        className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-blue-500 rounded-full flex items-center justify-center text-white font-semibold text-sm shadow-lg"
+                                                                        className="w-12 h-12 bg-black rounded-full flex items-center justify-center text-white font-semibold text-sm shadow-md"
                                                                         whileHover={{ scale: 1.1, rotate: 5 }}
                                                                         animate={hoveredCard === user.id ? { scale: 1.05 } : { scale: 1 }}
+                                                                        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                                                                     >
                                                                         {user.name.charAt(0).toUpperCase()}
                                                                     </motion.div>
                                                                     <div>
-                                                                        <div className="font-semibold text-gray-900 group-hover:text-blue-700 transition-colors">
+                                                                        <div className="font-semibold text-gray-900 group-hover:text-gray-700 transition-colors">
                                                                             {user.name}
                                                                         </div>
                                                                         <div className="text-sm text-gray-500">{user.email}</div>
@@ -551,7 +570,7 @@ const UsersListPage = () => {
                                                             <td className="px-6 py-4 text-right">
                                                                 <div className="flex items-center justify-end gap-1">
                                                                     <motion.button
-                                                                        onClick={() => navigate(`/admin/users/edit/${user.id}`)}
+                                                                        onClick={() => handleEditClick(user)}
                                                                         className="p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200"
                                                                         whileHover={{ scale: 1.1, rotate: 5 }}
                                                                         whileTap={{ scale: 0.95 }}
@@ -609,9 +628,10 @@ const UsersListPage = () => {
                                                 {/* User avatar and info */}
                                                 <div className="relative z-10 flex flex-col items-center text-center">
                                                     <motion.div
-                                                        className="w-16 h-16 bg-gradient-to-br from-emerald-500 to-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg mb-4"
+                                                        className="w-16 h-16 bg-black rounded-full flex items-center justify-center text-white font-bold text-xl shadow-md mb-4"
                                                         whileHover={{ scale: 1.1, rotate: 10 }}
                                                         animate={hoveredCard === user.id ? { scale: 1.05 } : { scale: 1 }}
+                                                        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                                                     >
                                                         {user.name.charAt(0).toUpperCase()}
                                                     </motion.div>
@@ -676,7 +696,7 @@ const UsersListPage = () => {
                                                     {/* Action buttons */}
                                                     <div className="flex gap-2 w-full">
                                                         <motion.button
-                                                            onClick={() => navigate(`/admin/users/edit/${user.id}`)}
+                                                            onClick={() => handleEditClick(user)}
                                                             className="flex-1 px-4 py-2 bg-blue-100 text-blue-700 rounded-xl font-medium hover:bg-blue-200 transition-colors flex items-center justify-center gap-2"
                                                             whileHover={{ scale: 1.02, y: -1 }}
                                                             whileTap={{ scale: 0.98 }}
@@ -771,6 +791,17 @@ const UsersListPage = () => {
                         user={userToDelete}
                         onClose={() => setShowDeleteModal(false)}
                         onConfirm={confirmDelete}
+                    />
+                )}
+            </AnimatePresence>
+
+            {/* Edit Modal */}
+            <AnimatePresence>
+                {showEditModal && (
+                    <EditUserModal
+                        user={userToEdit}
+                        onClose={() => setShowEditModal(false)}
+                        onConfirm={handleEditConfirm}
                     />
                 )}
             </AnimatePresence>

@@ -140,9 +140,9 @@ const StatCard = ({ title, value, change, icon, color, index }) => {
 
 const RecentActivityItem = ({ user, action, time, icon, color, index }) => {
   const colorClasses = {
-    emerald: 'bg-gradient-to-r from-emerald-400 to-emerald-500 text-white shadow-emerald-200',
-    red: 'bg-gradient-to-r from-red-400 to-red-500 text-white shadow-red-200',
-    blue: 'bg-gradient-to-r from-blue-400 to-blue-500 text-white shadow-blue-200',
+    light: 'bg-white text-gray-900 shadow-gray-200',
+    medium: 'bg-white text-gray-800 shadow-gray-300',
+    dark: 'bg-white text-black shadow-gray-400'
   };
 
   return (
@@ -499,7 +499,7 @@ const AdminDashboardPage = () => {
               </AnimatePresence>
             </div>
           </motion.div>
-          
+
           <motion.div
             className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-lg shadow-slate-200/50 border border-white/20 p-6 space-y-5"
             initial={{ opacity: 0, x: 30 }}
